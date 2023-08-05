@@ -1,0 +1,7 @@
+.createTodoForm {
+  width: 500px;
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  translate: -50% 0;
+}
