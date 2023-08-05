@@ -50,7 +50,7 @@ export const CreateTodoForm = () => {
     }
 
     reset();
-  }, [status]);
+  }, [status, toast, reset]);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={css.createTodoForm}>
