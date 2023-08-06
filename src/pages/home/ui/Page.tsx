@@ -5,7 +5,7 @@ import { CreateTodoForm } from 'features/todo/createTodo';
 export const HomePage = () => {
   return (
     <>
-      <Box padding="30px">
+      <Box paddingY="30px">
         <TodoList />
       </Box>
       <CreateTodoForm />
