@@ -1,12 +1,24 @@
-import { Center, Container, Flex, Spinner, Text } from '@chakra-ui/react';
+import { HamburgerIcon } from '@chakra-ui/icons';
+import {
+  Center,
+  Container,
+  Flex,
+  IconButton,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
+  Spinner,
+  Text,
+} from '@chakra-ui/react';
 import { TodoCard, useGetTodosQuery } from 'entities/todo';
+import { DeleteTodoBtn } from 'features/todo/deleteTodo';
 
 export const TodoList = () => {
   // TODO: Implement infinite scroll
   const {
     data: todos,
     isLoading,
-    isFetching,
     error,
   } = useGetTodosQuery({
     _page: 1,
@@ -29,7 +41,7 @@ export const TodoList = () => {
     );
   }
 
-  if (isLoading || isFetching) {
+  if (isLoading) {
     return (
       <Center h="100%">
         <Spinner />
@@ -43,12 +55,37 @@ export const TodoList = () => {
         <Container maxW="500px">
           <Flex direction="column" gap={2}>
             {todos?.map(todo => (
-              <TodoCard key={todo.id} todo={todo} />
+              <TodoCard
+                key={todo.id}
+                todo={todo}
+                suffixSlot={
+                  <Menu placement="bottom-end">
+                    <MenuButton
+                      as={IconButton}
+                      icon={<HamburgerIcon />}
+                      variant="ghost"
+                    />
+                    <MenuList>
+                      <MenuItem as={() => <DeleteTodoBtn todoId={todo.id} />} />
+                    </MenuList>
+                  </Menu>
+                }
+              />
             ))}
           </Flex>
         </Container>
       ) : (
-        <Center h="100vh">No todos</Center>
+        <Center h="100%">
+          <Flex direction="column" alignItems="center" gap={5}>
+            <img
+              width="48"
+              height="48"
+              src="https://img.icons8.com/material-outlined/48/4A5568/cancel-2.png"
+              alt="cancel-2"
+            />
+            <Text color="gray.600">No todos :(</Text>
+          </Flex>
+        </Center>
       )}
     </>
   );
