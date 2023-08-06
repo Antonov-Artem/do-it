@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Button, Flex, Input, useToast } from '@chakra-ui/react';
+import { Button, Container, Flex, Input, useToast } from '@chakra-ui/react';
 import { useCreateTodoMutation } from 'entities/todo';
 import {
   CreateTodoFormData,
@@ -54,22 +54,24 @@ export const CreateTodoForm = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={css.createTodoForm}>
-      <Flex gap={2}>
-        <Input
-          type="text"
-          placeholder="Title"
-          {...register('title')}
-          isDisabled={status === 'pending'}
-        />
-        <Button
-          type="submit"
-          colorScheme="blue"
-          isDisabled={!isValid}
-          isLoading={status === 'pending'}
-        >
-          Create
-        </Button>
-      </Flex>
+      <Container>
+        <Flex gap={2}>
+          <Input
+            type="text"
+            placeholder="Title"
+            {...register('title')}
+            isDisabled={status === 'pending'}
+          />
+          <Button
+            type="submit"
+            colorScheme="blue"
+            isDisabled={!isValid}
+            isLoading={status === 'pending'}
+          >
+            Create
+          </Button>
+        </Flex>
+      </Container>
     </form>
   );
 };
