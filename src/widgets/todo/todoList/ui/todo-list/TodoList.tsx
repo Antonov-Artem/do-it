@@ -13,6 +13,7 @@ import {
 } from '@chakra-ui/react';
 import { TodoCard, useGetTodosQuery } from 'entities/todo';
 import { DeleteTodoBtn } from 'features/todo/deleteTodo';
+import { ToggleTodoBtn } from 'features/todo/toggleTodo';
 
 export const TodoList = () => {
   // TODO: Implement infinite scroll
@@ -58,6 +59,7 @@ export const TodoList = () => {
               <TodoCard
                 key={todo.id}
                 todo={todo}
+                prefixSlot={<ToggleTodoBtn todo={todo} />}
                 suffixSlot={
                   <Menu placement="bottom-end">
                     <MenuButton
