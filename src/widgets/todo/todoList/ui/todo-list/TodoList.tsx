@@ -1,4 +1,3 @@
-import { HamburgerIcon } from '@chakra-ui/icons';
 import {
   Center,
   Container,
@@ -6,13 +5,16 @@ import {
   IconButton,
   Menu,
   MenuButton,
+  MenuDivider,
   MenuItem,
   MenuList,
   Spinner,
   Text,
 } from '@chakra-ui/react';
+import { HamburgerIcon } from '@chakra-ui/icons';
 import { TodoCard, useGetTodosQuery } from 'entities/todo';
 import { DeleteTodoBtn } from 'features/todo/deleteTodo';
+import { EditTodoBtn } from 'features/todo/editTodo';
 import { ToggleTodoBtn } from 'features/todo/toggleTodo';
 
 export const TodoList = () => {
@@ -68,6 +70,8 @@ export const TodoList = () => {
                       variant="ghost"
                     />
                     <MenuList>
+                      <MenuItem as={() => <EditTodoBtn todoId={todo.id} />} />
+                      <MenuDivider />
                       <MenuItem as={() => <DeleteTodoBtn todoId={todo.id} />} />
                     </MenuList>
                   </Menu>
